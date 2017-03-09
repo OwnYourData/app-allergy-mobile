@@ -1,9 +1,9 @@
-# UI for selecting a date-range
-# last update: 2017-03-01
+# UI for selecting a date-range in the table view
+# last update: 2017-03-09
 
-appSelect <- function(){
+appTableSelect <- function(){
         tagList(
-                selectInput('dateSelect',
+                selectInput('dateTableSelect',
                            label = 'Auswahl',
                            choices = c('letzte Woche'='1',
                                        'letztes Monat'='2',
@@ -14,7 +14,7 @@ appSelect <- function(){
                                        'alle Daten'='10',
                                        'individuell'='7'),
                            selected = 1),
-                selectInput('pollSelect',
+                selectInput('pollTableSelect',
                             label = NA,
                             choices = c('keine'),
                             selected = 'keine'),
