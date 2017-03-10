@@ -20,8 +20,7 @@ pollenListAT <- c(
         'Ölbaum (Olea)',
         'Beifuß (Artemisia)',
         'Ragweed (Ambrosia)',
-        'Pilzsporen (Alternaria)'
-)
+        'Pilzsporen (Alternaria)')
 pollenListDE <- c(
         'Erle (Alnus)',
         'Hasel (Corylus)',
@@ -31,15 +30,14 @@ pollenListDE <- c(
         'Roggen (Secale)',
         'Beifuß (Artemisia)',
         'Ragweed (Ambrosia)')
-pollenListCH <- c(
-        'Erle (Alnus)',
-        'Hasel (Corylus)',
-        'Esche (Fraxinus)',
-        'Birke (Betula)',
-        'Platane (Platanus)',
-        'Buche (Fagus)',
+pollenListCH<-c(
+        'alder (Alnus)',
+        'hazel (Corylus)',
+        'ash (Fraxinus)',
+        'birch (Betula)',
+        'Plane tree (Platanus)',
+        'Beech (Fagus)',
         'Oak (Quercus)',
-        'Gräser (Poaceae)',
-        'Beifuß (Artemisia)',
-        'Ragweed (Ambrosia)'
-)
+        'grasses (Poaceae)',
+        'mugwort (Artemisia)',
+        'ragweed (Ambrosia)')
