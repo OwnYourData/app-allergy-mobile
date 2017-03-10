@@ -31,11 +31,28 @@ appStart <- function(){
                 allItems <- readPlzItems()
                 plz <- allItems$plzCode
                 if(length(plz) > 0){
-                        plzPollList <- as.character(sort(mapply(
-                                paste0, 
-                                rep(plz, length(pollenList)), 
-                                ': ',
-                                rep(pollenList, length(plz)))))
+                        plzPollList <- c(apply(allItems, 1, function(x){
+                                as.character(sort(mapply(
+                                        paste0, 
+                                        rep(paste0(switch(x['country'],
+                                                          'Österreich'='A-',
+                                                          'Deutschland'='D-',
+                                                          'Schweiz'='CH-',
+                                                          { '' } ),
+                                                   x['plzCode']),
+                                            switch(x['country'],
+                                                   'Österreich'={ length(pollenListAT) },
+                                                   'Deutschland'={ length(pollenListDE) },
+                                                   'Schweiz'={ length(pollenListCH) },
+                                                   { 0 } )), 
+                                        ': ',
+                                        rep(switch(x['country'],
+                                                   'Österreich'={ pollenListAT },
+                                                   'Deutschland'={ pollenListDE },
+                                                   'Schweiz'={ pollenListCH },
+                                                   { data.frame() } ), 
+                                            length(x['plzCode'])))))
+                        }))                
                         pollSelectDefault <- plzPollList[1]
                         updateSelectInput(
                                 session,
@@ -71,8 +88,10 @@ readPlzItems <- function(){
                         if(nrow(retVal) > 0){
                                 plzItems <- retVal
                                 rownames(plzItems) <- plzItems$name
-                                plzItems <- plzItems[, c('parameters.replace.plz', 'id')]
-                                colnames(plzItems) <- c('plzCode', 'id')
+                                plzItems <- plzItems[, c('parameters.replace.plz', 
+                                                         'parameters.replace.country', 
+                                                         'id')]
+                                colnames(plzItems) <- c('plzCode', 'country', 'id')
                         }
                 }
         }
@@ -157,9 +176,11 @@ pollData <- function(pollSelect){
         if(pollSelect == 'keine'){
                 data.frame()
         } else {
-                plz <- strsplit(pollSelect, ':')[[1]][1]
+                location <- strsplit(pollSelect, ':')[[1]][1]
+                country <- strsplit(location, '-')[[1]][1]
+                plz <- strsplit(location, '-')[[1]][2]
                 typ <- trimws(strsplit(pollSelect, ':')[[1]][2])
-                repo <- paste0(app_id, '.pollination', plz)
+                repo <- paste0(app_id, '.pollination_', country, '-', plz)
                 data <- repoData(repo)
                 data <- data[data$pollType == typ, ]
                 if(nrow(data) > 0){

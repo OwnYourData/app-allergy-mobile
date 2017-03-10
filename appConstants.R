@@ -7,7 +7,7 @@ app_id <- 'eu.ownyourdata.allergy'
 desktopUrl <- 'https://allergie-tagebuch.datentresor.org'
 
 # app specific constants
-pollenList <- c(
+pollenListAT <- c(
         'Zypressengewächse (Cupressaceae)',
         'Erle (Alnus)',
         'Hasel (Corylus)',
@@ -21,4 +21,25 @@ pollenList <- c(
         'Beifuß (Artemisia)',
         'Ragweed (Ambrosia)',
         'Pilzsporen (Alternaria)'
+)
+pollenListDE <- c(
+        'Erle (Alnus)',
+        'Hasel (Corylus)',
+        'Esche (Fraxinus)',
+        'Birke (Betula)',
+        'Gräser (Poaceae)',
+        'Roggen (Secale)',
+        'Beifuß (Artemisia)',
+        'Ragweed (Ambrosia)')
+pollenListCH <- c(
+        'Erle (Alnus)',
+        'Hasel (Corylus)',
+        'Esche (Fraxinus)',
+        'Birke (Betula)',
+        'Platane (Platanus)',
+        'Buche (Fagus)',
+        'Oak (Quercus)',
+        'Gräser (Poaceae)',
+        'Beifuß (Artemisia)',
+        'Ragweed (Ambrosia)'
 )
